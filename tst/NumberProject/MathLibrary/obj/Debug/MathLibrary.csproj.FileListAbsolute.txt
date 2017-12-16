@@ -1,0 +1,5 @@
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibrary\bin\Debug\MathLibrary.dll
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibrary\bin\Debug\MathLibrary.pdb
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibrary\obj\Debug\MathLibrary.csprojResolveAssemblyReference.cache
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibrary\obj\Debug\MathLibrary.dll
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibrary\obj\Debug\MathLibrary.pdb

@@ -1,0 +1,15 @@
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibrary.Tests\bin\Debug\MathLibrary.Tests.dll
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibrary.Tests\bin\Debug\MathLibrary.Tests.pdb
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibrary.Tests\bin\Debug\MathLibrary.dll
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibrary.Tests\bin\Debug\Microsoft.Pex.Framework.dll
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibrary.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibrary.Tests\bin\Debug\Microsoft.ExtendedReflection.Reasoning.dll
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibrary.Tests\bin\Debug\Microsoft.ExtendedReflection.dll
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibrary.Tests\bin\Debug\MathLibrary.pdb
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibrary.Tests\bin\Debug\Microsoft.Pex.Framework.xml
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibrary.Tests\bin\Debug\pt-BR\Microsoft.Pex.Framework.resources.dll
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibrary.Tests\bin\Debug\pt-BR\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibrary.Tests\bin\Debug\pt-BR\Microsoft.ExtendedReflection.resources.dll
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibrary.Tests\obj\Debug\MathLibrary.Tests.csprojResolveAssemblyReference.cache
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibrary.Tests\obj\Debug\MathLibrary.Tests.dll
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibrary.Tests\obj\Debug\MathLibrary.Tests.pdb

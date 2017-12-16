@@ -1,0 +1,14 @@
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibraryTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibraryTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibraryTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibraryTests\bin\Debug\MathLibraryTests.dll
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibraryTests\bin\Debug\MathLibraryTests.pdb
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibraryTests\bin\Debug\MathLibrary.dll
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibraryTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibraryTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibraryTests\bin\Debug\MathLibrary.pdb
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibraryTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibraryTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibraryTests\obj\Debug\MathLibraryTests.csprojResolveAssemblyReference.cache
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibraryTests\obj\Debug\MathLibraryTests.dll
+D:\Paulo\Pessoal\train\Lotter\tst\NumberProject\MathLibraryTests\obj\Debug\MathLibraryTests.pdb
