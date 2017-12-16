@@ -1,0 +1,992 @@
+swagger: '2.0'
+info:
+  description: Este é um simples exemplo de APIs da aplicação Lotter.
+  version: 1.0.0
+  title: Lotter
+  termsOfService: 'http://lotter.com.br/termos/'
+  contact:
+    email: apiteam@lotter.com.br
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: account
+    description: Todas as operações associadas à Conta.
+    externalDocs:
+      description: Saiba mais em lotter.com.br
+      url: 'http://swagger.io'
+schemes:
+  - https
+paths:
+  /accounts:
+    get:
+      tags:
+        - account
+      summary: Busca todas as contas associados ao usuário
+      description: ''
+      operationId: getAllAccount
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Operação realizada com sucesso
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Account'
+        '401':
+          description: O token informado é inválido
+    post:
+      tags:
+        - account
+      summary: Adiciona uma nova conta
+      description: ''
+      operationId: addAccount
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Objeto da conta que será adicionada.
+          required: true
+          schema:
+            example:
+              name: Banco Santander
+              users:
+                - <ID1>
+                - <ID2>
+              initialValue: 2000
+              isEnabled: true
+      responses:
+        '201':
+          description: O cadastro foi realizado com sucesso
+          schema:
+            $ref: '#/definitions/Account'
+        '401':
+          description: O token informado é inválido
+        '409':
+          description: Já existe uma conta com este nome
+        '422':
+          description: Um ou mais dos parâmetros informados contém o formato inválido
+  '/accounts/{id}':
+    get:
+      tags:
+        - account
+      summary: Busca uma conta por Id
+      description: ''
+      operationId: getAccount
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: Id do objeto
+          type: string
+          required: true
+      responses:
+        '200':
+          description: O objeto foi encontrado com sucesso
+          schema:
+            $ref: '#/definitions/Account'
+        '401':
+          description: O token informado é inválido
+        '403':
+          description: O usuário não tem permissão para ler as informações desse objeto
+        '404':
+          description: O objeto não foi encontado
+        '422':
+          description: Um ou mais dos parâmetros informados contém o formato inválido
+    put:
+      tags:
+        - account
+      summary: Atualiza o objeto
+      description: ''
+      operationId: changeAccount
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: Id da conta que será alterada
+          type: string
+          required: true
+        - in: body
+          name: body
+          description: Objeto da conta que será atualizada.
+          required: true
+          schema:
+            $ref: '#/definitions/Account'
+      responses:
+        '200':
+          description: O objeto foi atualizado com sucesso
+          schema:
+            $ref: '#/definitions/Account'
+        '401':
+          description: O token informado é inválido
+        '403':
+          description: O usuário não tem permissão para alterar as informações desse objeto
+        '404':
+          description: O objeto não foi encontado
+        '409':
+          description: Já existe uma conta com este nome
+        '422':
+          description: Um ou mais dos parâmetros informados contém o formato inválido
+    delete:
+      tags:
+        - account
+      summary: Deleta uma conta
+      description: ''
+      operationId: deleteAccount
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: Id da conta que será alterada
+          type: string
+          required: true
+      responses:
+        '204':
+          description: O objeto foi excluído com sucesso
+        '401':
+          description: O token informado é inválido
+        '403':
+          description: O usuário não tem permissão para excluir esse objeto
+  '/accounts/{id}/users':
+    get:
+      tags:
+        - account
+        - user
+      summary: Busca os proprietários de uma determinada conta
+      description: ''
+      operationId: getOwnersByAccountId
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: Id do objeto
+          type: string
+          required: true
+      responses:
+        '200':
+          description: Operação realizada com sucesso
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/User'
+        '401':
+          description: O token informado é inválido
+  /users:
+    post:
+      tags:
+        - user
+      summary: Adiciona um novo objeto
+      description: ''
+      operationId: addUser
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Objeto que será adicionado.
+          required: true
+          schema:
+            example:
+              name: Lotter Name
+              login: lotter
+              email: lotter@hotmail.com
+              password: '*************'
+      responses:
+        '201':
+          description: O cadastro foi realizado com sucesso
+          schema:
+            $ref: '#/definitions/User'
+        '401':
+          description: O token informado é inválido
+        '409':
+          description: Já existe uma usuário com este login e/ou email
+        '422':
+          description: Um ou mais dos parâmetros informados contém o formato inválido
+  /users/me:
+    get:
+      tags:
+        - user
+      summary: Busca um objeto por Id
+      description: ''
+      operationId: getUser
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: O objeto foi encontrado com sucesso
+          schema:
+            $ref: '#/definitions/User'
+        '401':
+          description: O token informado é inválido
+    put:
+      tags:
+        - user
+      summary: Atualiza o objeto
+      description: ''
+      operationId: changeUser
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Objeto que será atualizado.
+          required: true
+          schema:
+            example:
+              name: Lotter Name
+              login: lotter
+              email: lotter@hotmail.com
+      responses:
+        '200':
+          description: O objeto foi atualizado com sucesso
+          schema:
+            $ref: '#/definitions/User'
+        '401':
+          description: O token informado é inválido
+        '409':
+          description: Já existe uma usuário com este login e/ou email
+        '422':
+          description: Um ou mais dos parâmetros informados contém o formato inválido
+    delete:
+      tags:
+        - user
+      summary: Deleta o usuário
+      description: ''
+      operationId: deleteUser
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '204':
+          description: O objeto foi excluído com sucesso
+        '401':
+          description: O token informado é inválido
+  /users/me/accounts:
+    get:
+      tags:
+        - account
+        - user
+      summary: Busca as contas do usuário
+      description: ''
+      operationId: getMyAccounts
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Operação realizada com sucesso
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Account'
+        '401':
+          description: O token informado é inválido
+  /categories:
+    get:
+      tags:
+        - category
+      summary: Busca todas as categorias associados ao conta
+      description: ''
+      operationId: getAllcategory
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Operação realizada com sucesso
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Category'
+        '401':
+          description: O token informado é inválido
+    post:
+      tags:
+        - category
+      summary: Adiciona uma nova categoria
+      description: ''
+      operationId: addCategory
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Objeto da categoria que será adicionada.
+          required: true
+          schema:
+            example:
+              name: alimentação
+              isEnabled: true
+      responses:
+        '201':
+          description: A categoria foi cadastrada com sucesso
+          schema:
+            $ref: '#/definitions/Account'
+        '401':
+          description: O token informado é inválido
+        '409':
+          description: Já existe uma categoria com este nome
+        '422':
+          description: O parâmetro informado contém o formato inválido
+  '/categories/{id}':
+    get:
+      tags:
+        - category
+      summary: Busca uma categoria por Id
+      description: ''
+      operationId: getCategory
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: Id do objeto
+          type: string
+          required: true
+      responses:
+        '200':
+          description: O objeto foi encontrado com sucesso
+          schema:
+            $ref: '#/definitions/Category'
+        '401':
+          description: O token informado é inválido
+        '403':
+          description: O usuário não tem permissão para ler as informações desse objeto
+        '404':
+          description: O objeto não foi encontado
+        '422':
+          description: Um ou mais dos parâmetros informados contém o formato inválido
+    put:
+      tags:
+        - category
+      summary: Atualiza o objeto
+      description: ''
+      operationId: changeCategory
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: Id da categoria que será alterada
+          type: string
+          required: true
+        - in: body
+          name: body
+          description: Objeto da categoria que será atualizada.
+          required: true
+          schema:
+            $ref: '#/definitions/Account'
+      responses:
+        '200':
+          description: O objeto foi atualizado com sucesso
+          schema:
+            $ref: '#/definitions/Account'
+        '401':
+          description: O token informado é inválido
+        '403':
+          description: O usuário não tem permissão para alterar as informações desse objeto
+        '404':
+          description: O objeto não foi encontado
+        '409':
+          description: Já existe uma categoria com este nome
+        '422':
+          description: Um ou mais dos parâmetros informados contém o formato inválido
+    delete:
+      tags:
+        - category
+      summary: Deleta um objeto
+      description: ''
+      operationId: deleteCategory
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: Id da categoria que será alterada
+          type: string
+          required: true
+      responses:
+        '204':
+          description: O objeto foi excluído com sucesso
+        '401':
+          description: O token informado é inválido
+        '403':
+          description: O usuário não tem permissão para excluir esse objeto
+  /transactions:
+    post:
+      tags:
+        - transaction
+      summary: Adiciona um novo objeto
+      description: ''
+      operationId: addTransaction
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Objeto que será adicionado.
+          required: true
+          schema:
+            example:
+              date: 01/01/2000
+              description: Pagamento de conta
+              typeTransaction: 1
+              category: <ID>
+              accountTo: <ID>
+              accountFrom: <ID>
+              value: 2000
+              isConsolidated: true
+              installment: 1
+              installmentTotal: 10
+              group: 6bb743f6-39fc-4fbb-b01c-719112f68fc6
+              reminder: 1
+      responses:
+        '201':
+          description: O cadastro foi realizado com sucesso
+          schema:
+            $ref: '#/definitions/Transaction'
+        '401':
+          description: O token informado é inválido
+        '422':
+          description: Um ou mais dos parâmetros informados contém o formato inválido
+  '/transactions/{year}/{month}':
+    get:
+      tags:
+        - transaction
+      summary: Busca todas as transações associados ao usuário no período informado
+      description: ''
+      operationId: getAllTransaction
+      parameters:
+        - name: year
+          in: path
+          description: Ano do período que será filtrado
+          type: number
+          required: true
+        - name: month
+          in: path
+          description: Mês do período que será filtrado
+          type: number
+          required: true
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: Operação realizada com sucesso
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Transaction'
+        '401':
+          description: O token informado é inválido
+        '422':
+          description: Um ou mais dos parâmetros informados contém o formato inválido
+  '/transactions/{id}':
+    get:
+      tags:
+        - transaction
+      summary: Busca uma transação por Id
+      description: ''
+      operationId: getTransaction
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: Id do objeto
+          type: string
+          required: true
+      responses:
+        '200':
+          description: O objeto foi encontrado com sucesso
+          schema:
+            $ref: '#/definitions/Transaction'
+        '401':
+          description: O token informado é inválido
+        '403':
+          description: O usuário não tem permissão para ler as informações desse objeto
+        '404':
+          description: O objeto não foi encontado
+        '422':
+          description: Um ou mais dos parâmetros informados contém o formato inválido
+    put:
+      tags:
+        - transaction
+      summary: Atualiza o objeto
+      description: ''
+      operationId: changeTransaction
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: Id do objeto que será alterado.
+          type: string
+          required: true
+        - in: body
+          name: body
+          description: Objeto que será atualizado.
+          required: true
+          schema:
+            example:
+              id: <ID>
+              date: 01/01/2000
+              description: Pagamento de conta
+              typeTransaction: 1
+              category: <ID>
+              accountTo: <ID>
+              accountFrom: <ID>
+              value: 2000
+              isConsolidated: true
+              reminder: 1
+      responses:
+        '200':
+          description: O objeto foi atualizado com sucesso
+          schema:
+            $ref: '#/definitions/Transaction'
+        '401':
+          description: O token informado é inválido
+        '403':
+          description: O usuário não tem permissão para alterar as informações desse objeto
+        '404':
+          description: O objeto não foi encontado
+        '422':
+          description: Um ou mais dos parâmetros informados contém o formato inválido
+    delete:
+      tags:
+        - transaction
+      summary: Deleta um objeto
+      description: ''
+      operationId: deleteTransaction
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: Id do objeto que será excluído.
+          type: string
+          required: true
+      responses:
+        '204':
+          description: O objeto foi excluído com sucesso
+        '401':
+          description: O token informado é inválido
+        '403':
+          description: O usuário não tem permissão para excluir esse objeto
+  '/transactions/{id}/begin':
+    put:
+      tags:
+        - transaction
+      summary: Atualiza todas as transações agrupadas a esse objeto
+      description: ''
+      operationId: changeBeginTransaction
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: Id do objeto que será alterado.
+          type: string
+          required: true
+        - in: body
+          name: body
+          description: Objeto que será atualizado.
+          required: true
+          schema:
+            example:
+              id: <ID>
+              date: 01/01/2000
+              description: Pagamento de conta
+              typeTransaction: 1
+              category: <ID>
+              accountTo: <ID>
+              accountFrom: <ID>
+              value: 2000
+              reminder: 1
+      responses:
+        '200':
+          description: Os objetos foram atualizados com sucesso
+          schema:
+            $ref: '#/definitions/Transaction'
+        '401':
+          description: O token informado é inválido
+        '403':
+          description: O usuário não tem permissão para alterar as informações desse objeto
+        '404':
+          description: O objeto não foi encontado
+        '422':
+          description: Um ou mais dos parâmetros informados contém o formato inválido
+    delete:
+      tags:
+        - transaction
+      summary: Deleta todas as transações agrupadas a esse objeto.
+      description: ''
+      operationId: deleteBeginTransaction
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: Id do objeto que será excluído.
+          type: string
+          required: true
+      responses:
+        '204':
+          description: O objeto foi excluído com sucesso
+        '401':
+          description: O token informado é inválido
+        '403':
+          description: O usuário não tem permissão para excluir esse objeto
+  '/transactions/{id}/just':
+    put:
+      tags:
+        - transaction
+      summary: Atualiza o objeto
+      description: ''
+      operationId: changeJustTransaction
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: Id do objeto que será alterado.
+          type: string
+          required: true
+        - in: body
+          name: body
+          description: Objeto que será atualizado.
+          required: true
+          schema:
+            example:
+              id: <ID>
+              date: 01/01/2000
+              description: Pagamento de conta
+              typeTransaction: 1
+              category: <ID>
+              accountTo: <ID>
+              accountFrom: <ID>
+              value: 2000
+              isConsolidated: true
+              reminder: 1
+      responses:
+        '200':
+          description: O objeto foi atualizado com sucesso
+          schema:
+            $ref: '#/definitions/Transaction'
+        '401':
+          description: O token informado é inválido
+        '403':
+          description: O usuário não tem permissão para alterar as informações desse objeto
+        '404':
+          description: O objeto não foi encontado
+        '422':
+          description: Um ou mais dos parâmetros informados contém o formato inválido
+    delete:
+      tags:
+        - transaction
+      summary: Deleta um objeto
+      description: ''
+      operationId: deleteJustTransaction
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: Id do objeto que será excluído.
+          type: string
+          required: true
+      responses:
+        '204':
+          description: O objeto foi excluído com sucesso
+        '401':
+          description: O token informado é inválido
+        '403':
+          description: O usuário não tem permissão para excluir esse objeto
+  '/transactions/{id}/now':
+    put:
+      tags:
+        - transaction
+      summary: Atualiza todas as transações agrupadas a esse objeto a partir desse.
+      description: ''
+      operationId: changeNowTransaction
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: Id do objeto que será alterado.
+          type: string
+          required: true
+        - in: body
+          name: body
+          description: Objeto que será atualizado.
+          required: true
+          schema:
+            example:
+              id: <ID>
+              date: 01/01/2000
+              description: Pagamento de conta
+              typeTransaction: 1
+              category: <ID>
+              accountTo: <ID>
+              accountFrom: <ID>
+              value: 2000
+              reminder: 1
+      responses:
+        '200':
+          description: O objeto foi atualizado com sucesso
+          schema:
+            $ref: '#/definitions/Transaction'
+        '401':
+          description: O token informado é inválido
+        '403':
+          description: O usuário não tem permissão para alterar as informações desse objeto
+        '404':
+          description: O objeto não foi encontado
+        '422':
+          description: Um ou mais dos parâmetros informados contém o formato inválido
+    delete:
+      tags:
+        - transaction
+      summary: Deleta todas as transações agrupadas a esse objeto a partir desse.
+      description: ''
+      operationId: deleteNowTransaction
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: id
+          in: path
+          description: Id do objeto que será excluído.
+          type: string
+          required: true
+      responses:
+        '204':
+          description: O objeto foi excluído com sucesso
+        '401':
+          description: O token informado é inválido
+        '403':
+          description: O usuário não tem permissão para excluir esse objeto
+  /transactions/suggestion:
+    post:
+      tags:
+        - transaction
+      summary: Adiciona um novo objeto
+      description: ''
+      operationId: analyzeTransaction
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Será analizado uma sugestão de informações.
+          required: true
+          schema:
+            example:
+              description: Pagamento de conta
+      responses:
+        '201':
+          description: Análise executada com sucesso.
+          schema:
+            example:
+              typeTransaction: 1
+              category: <ID>
+        '401':
+          description: O token informado é inválido
+        '422':
+          description: Um ou mais dos parâmetros informados contém o formato inválido
+definitions:
+  User:
+    type: object
+    required:
+      - name
+      - login
+      - email
+      - password
+    properties:
+      _id:
+        type: string
+        example: <ID>
+      name:
+        type: string
+        example: Lotter Name
+      login:
+        type: string
+        example: lotter
+      email:
+        type: string
+        example: lotter@hotmail.com
+      password:
+        type: string
+        example: '*****************'
+  Account:
+    type: object
+    required:
+      - name
+      - owner
+      - initialValue
+    properties:
+      _id:
+        type: string
+        example: <ID>
+      name:
+        type: string
+        example: Banco Santander
+      owner:
+        type: string
+        example: <ID>
+      users:
+        type: array
+        items:
+          type: string
+          example: <ID>
+      initialValue:
+        type: number
+        example: 2000
+      isEnabled:
+        type: boolean
+        example: true
+  Category:
+    type: object
+    required:
+      - name
+      - owner
+    properties:
+      _id:
+        type: string
+        example: <ID>
+      name:
+        type: string
+        example: Alimentação
+      owner:
+        type: string
+        example: <ID>
+      isEnabled:
+        type: boolean
+        example: true
+  Transaction:
+    type: object
+    required:
+      - description
+      - typeTransaction
+      - category
+      - accountFrom
+      - value
+      - createdUser
+      - updatedUser
+      - createdDate
+      - updatedDate
+    properties:
+      _id:
+        type: string
+        example: <ID>
+      date:
+        type: string
+        format: date
+        example: 01/01/2000
+      description:
+        type: string
+        example: Pagamento de conta
+      typeTransaction:
+        type: number
+        example: 1
+      category:
+        type: string
+        example: <ID>
+      accountTo:
+        type: string
+        example: <ID>
+      accountFrom:
+        type: string
+        example: <ID>
+      value:
+        type: number
+        example: 2000
+      createdUser:
+        type: string
+        example: <ID>
+      updatedUser:
+        type: string
+        example: <ID>
+      createdDate:
+        type: string
+        format: date-time
+        example: '01/01/2000 00:00:00.000'
+      updatedDate:
+        type: string
+        format: date-time
+        example: '01/01/2000 00:00:00.000'
+      isConsolidated:
+        type: boolean
+        example: true
+      installment:
+        type: number
+        example: 1
+      installmentTotal:
+        type: number
+        example: 10
+      group:
+        type: string
+        example: 6bb743f6-39fc-4fbb-b01c-719112f68fc6
+      reminder:
+        type: number
+        example: 1
+host: virtserver.swaggerhub.com
+basePath: /SysMap-Trainning/Lotter/1.0.0
